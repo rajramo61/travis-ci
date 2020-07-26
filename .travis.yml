@@ -22,5 +22,4 @@ after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker push rajramo/simple-node
 
-deploy:
-    - echo "deploy step is not needed for this simple project"
+#deploy:

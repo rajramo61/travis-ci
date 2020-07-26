@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+    - 13
+
+services:
+    - docker
+
+# Pre testing installs
+install:
+    - echo "No install needed for now."
+
+# Scripts need to be run before main script, like running test cases.
+before_script:
+    - echo "No tests for very simple project."
+
+script:
+    - docker --version # Just prints docker version for basic debugging
+    - docker build -t simple-node .
+    - docker tag simple-node rajramo/simple-node:latest
+
+after_success:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push rajramo/simple-node
+
+deploy:
+    - echo "deploy step is not needed for this simple project"
